@@ -1,6 +1,6 @@
 Liste des caractéristiques
 ==========================
-- il permettra de Choisir le Profil Utilisateur (Gestionnaire ou Auteur)
+- il permettra de Choisir le Profil Utilisateur (Admin ou Owner)
 - il permettra d'importer une Bibliothèque Excel de Titres et d'Interprètes
 - il permettra d'Uploader un Fichier
 - il devra lancer une Analyse Automatique du Fichier en fonction de son Nom
@@ -26,9 +26,58 @@ Division le problème en Modules
 - Interpreter : l'interprète
 - Title : le titre
 - ElementManager : permettra de gérer les Interpreter et les Title
+    - InterpreterManager
+    - TitleManager
 - Linker : permettra de lier l'Interpreter au Title et enfin au File
-- HistoricalManager : gérer et afficher l'historique des File
+- HistoricalManager : gérer et afficher l'historique des Uploads de File
 - ProfileManager : gérer les profils utilisateurs
+- FileLister : liste tous les File
+- Filter : filtre
+    - FilterPerOwner
+- SearchEngine
 
 Exigences
 =========
+- Admin :
+    - charger la banque de données : Interpreter et Title
+    - peuvent modifier et supprimer ces données
+    - accés aux modules :
+        - InterpreterManager
+        - TitleManager
+        - FileLister
+        - SearchEngine
+- Owner :
+    - uploader son fichier
+    - qualifier son fichier : définir Title, et Interpreter
+    - valider le fichier
+    - accés aux modules :
+        - Uploader
+        - Validator
+        - FileLister
+        - FilterPerOwner
+        - SearchEngine
+- Interpreter:
+    - name:
+        type:varchar,
+        length: 100,
+        required: true,
+        default: notnull,
+    - lastname:
+        type:varchar,
+        length: 50,
+        required: false,
+        default: null,
+- Title:
+
+    - name:
+        type:varchar,
+        length: 250,
+        required: true,
+        default: notnull,
+    - interpreter:
+        type:Interpreter,
+        required: true,
+        default: notnull,
+    - year:
+        type: integer,
+        requirement: [1900 - 2100],
