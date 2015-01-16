@@ -100,7 +100,7 @@ class Csv implements File
      *
      * @return bool
      */
-    private function isAnCsvFile($filename)
+    private function isCsv($filename)
     {
         $extension = pathinfo($filename, PATHINFO_EXTENSION);
 
@@ -116,11 +116,11 @@ class Csv implements File
     private function setFilename($filename)
     {
         if (false === is_file($filename)) {
-            throw new FileNotFoundException("The file {$filename} does not exist");
+            throw new FileNotFoundException("The file does not exist");
         }
 
-        if (false === $this->isAnCsvFile($filename)) {
-            throw new FileFormatException("The file {$filename} is not an csv file");
+        if (false === $this->isCsv($filename)) {
+            throw new FileFormatException("The file is not a csv file");
         }
 
         $this->filename = $filename;
