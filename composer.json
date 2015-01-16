@@ -1,0 +1,23 @@
+{
+    "name": "hj/SimpleFileManager",
+    "description": "An simple file manager using Silex Framework, Doctrine and Twig",
+    "minimum-stability": "dev",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "hatim jacquir",
+            "email": "jacquirhatim@gmail.com"
+        }
+    ],
+    "require": {
+        "phpunit/phpunit": "~4.0",
+        "doctrine/orm": "~2.4",
+        "silex/silex": "~1.2",
+        "twig/twig": "~1.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "Hj\\": "src/"
+        }
+    }
+}

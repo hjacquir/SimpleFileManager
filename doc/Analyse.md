@@ -56,17 +56,35 @@ Exigences
         - FileLister
         - FilterPerOwner
         - SearchEngine
+- File:
+    - name:
+        type: varchar
+        length: 255
+        required: true
+        default: notNull
+    - interpreter:
+        type: Interpreter
+        required: false
+        default: null
+    - title:
+        type: Title
+        required: false
+        default: null
+
 - Interpreter:
+    - isOriginalInterpreter:
+        type:boolean
+        default:false
     - name:
         type:varchar,
         length: 100,
         required: true,
-        default: notnull,
+        default: notNull,
     - lastname:
         type:varchar,
         length: 50,
-        required: false,
-        default: null,
+        required: true,
+        default: notNull,
 - Title:
 
     - name:
@@ -79,5 +97,10 @@ Exigences
         required: true,
         default: notnull,
     - year:
-        type: integer,
+        type: string,
         requirement: [1900 - 2100],
+- Relations:
+    - ManyToMany : Title - Interpreter
+    - OneToOne:
+        - File - Interpreter
+        - File - Title
