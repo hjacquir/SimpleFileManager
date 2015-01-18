@@ -8,17 +8,21 @@
 namespace Hj\File\Mp3;
 
 use Hj\File\File;
-use Hj\Mp3\Elements\Interpreter;
-use Hj\Mp3\Elements\Title;
+use Hj\File\Mp3\Elements\Interpreter;
+use Hj\File\Mp3\Elements\Title;
 
 /**
  * Represent an mp3 file
  *
  * Class Mp3
  * @package Hj\File\Mp3
+ *
+ * @todo add unit test
  */
 class Mp3 implements File
 {
+    const CLASS_NAME = __CLASS__;
+
     /**
      * @var string
      */

@@ -5,16 +5,23 @@
  * @author : Hatim Jacquir <jacquirhatim@gmail.com>
  */
 
-namespace Hj\Mp3\Elements;
-
-use Doctrine\Common\Collections\ArrayCollection;
+namespace Hj\File\Mp3\Elements;
 
 /**
  * Class Title
- * @package Hj\Mp3\Elements
+ * @package Hj\File\Mp3\Elements
+ *
+ * @todo add unit test
  */
-class Title extends Element
+class Title
 {
+    const CLASS_NAME = __CLASS__;
+
+    /**
+     * @var integer
+     */
+    private $identifier;
+
     /**
      * @var string
      */
@@ -26,41 +33,11 @@ class Title extends Element
     private $year;
 
     /**
-     * @var ArrayCollection
+     * @return int
      */
-    private $interpreters;
-
-    public function __construct($identifier, $name, $year)
+    public function getIdentifier()
     {
-        parent::__construct($identifier);
-
-        $this->name = $name;
-        $this->year = $year;
-        $this->interpreters = new ArrayCollection();
-    }
-
-    /**
-     * @param \Doctrine\Common\Collections\ArrayCollection $interpreters
-     */
-    public function setInterpreters($interpreters)
-    {
-        $this->interpreters = $interpreters;
-    }
-
-    /**
-     * @return \Doctrine\Common\Collections\ArrayCollection
-     */
-    public function getInterpreters()
-    {
-        return $this->interpreters;
-    }
-
-    /**
-     * @param string $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
+        return $this->identifier;
     }
 
     /**
@@ -72,14 +49,6 @@ class Title extends Element
     }
 
     /**
-     * @param string $year
-     */
-    public function setYear($year)
-    {
-        $this->year = $year;
-    }
-
-    /**
      * @return string
      */
     public function getYear()
@@ -88,22 +57,26 @@ class Title extends Element
     }
 
     /**
-     * @param Interpreter $interpreter
+     * @param int $identifier
      */
-    public function addInterpreter(Interpreter $interpreter)
+    public function setIdentifier($identifier)
     {
-        if (false === $this->interpreterAlreadyExist($interpreter)) {
-            $this->interpreters->add($interpreter);
-        }
+        $this->identifier = $identifier;
     }
 
     /**
-     * @param Interpreter $interpreter
-     *
-     * @return bool
+     * @param string $name
      */
-    private function interpreterAlreadyExist(Interpreter $interpreter)
+    public function setName($name)
     {
-        return $this->interpreters->contains($interpreter);
+        $this->name = $name;
+    }
+
+    /**
+     * @param string $year
+     */
+    public function setYear($year)
+    {
+        $this->year = $year;
     }
 }
