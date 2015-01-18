@@ -15,7 +15,7 @@ Diagramme de cas d'utilisations
 ===============================
 - voir le fichier UseCase.uml
 
-Division le problème en Modules
+Division du problème en Modules
 =================================
 - Tests : pour les tests unitaires et fonctionnels
 - Loader : pour importer la banque des données
