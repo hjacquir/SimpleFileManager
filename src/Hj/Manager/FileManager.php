@@ -10,6 +10,8 @@ namespace Hj\Manager;
 /**
  * Class File
  * @package Hj\Manager
+ *
+ * @todo add unit and functional test
  */
 abstract class FileManager
 {
