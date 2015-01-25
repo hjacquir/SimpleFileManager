@@ -7,20 +7,20 @@
 
 namespace Hj\File\Mp3\Elements;
 
+use Hj\Exception\NullArgumentException;
+
 /**
  * Class Title
  * @package Hj\File\Mp3\Elements
- *
- * @todo add unit test
  */
-class Title
+class Title implements Element
 {
     const CLASS_NAME = __CLASS__;
 
     /**
      * @var integer
      */
-    private $identifier;
+    private $id;
 
     /**
      * @var string
@@ -28,16 +28,42 @@ class Title
     private $name;
 
     /**
-     * @var string
+     * @var integer
      */
-    private $year;
+    private $year = null;
 
     /**
-     * @return int
+     * @var Interpreter
      */
-    public function getIdentifier()
+    private $interpreter;
+
+    /**
+     * @var string
+     */
+    private $uniqueId;
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
     {
-        return $this->identifier;
+        $this->id = $id;
+    }
+
+    /**
+     * @param Interpreter $interpreter
+     */
+    public function setInterpreter(Interpreter $interpreter)
+    {
+        $this->interpreter = $interpreter;
+    }
+
+    /**
+     * @return Interpreter
+     */
+    public function getInterpreter()
+    {
+        return $this->interpreter;
     }
 
     /**
@@ -57,14 +83,6 @@ class Title
     }
 
     /**
-     * @param int $identifier
-     */
-    public function setIdentifier($identifier)
-    {
-        $this->identifier = $identifier;
-    }
-
-    /**
      * @param string $name
      */
     public function setName($name)
@@ -78,5 +96,46 @@ class Title
     public function setYear($year)
     {
         $this->year = $year;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setUniqueId()
+    {
+        $method = __METHOD__;
+
+        if (null === $this->name) {
+            throw new NullArgumentException("You must set the name before calling {$method}");
+        }
+
+        if (null === $this->interpreter) {
+            throw new NullArgumentException("You must set the interpreter before calling {$method}");
+        }
+
+        $this->uniqueId = "{$this->name}_{$this->interpreter->getUniqueId()}";
+    }
+
+    /**
+     * @param Element $title
+     *
+     * @return bool
+     */
+    public function isEqual(Element $title)
+    {
+        return $this->uniqueId === $title->getUniqueId();
+    }
+
+    /**
+     * @return string
+     */
+    public function getUniqueId()
+    {
+        return $this->uniqueId;
     }
 }

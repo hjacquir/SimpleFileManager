@@ -7,7 +7,7 @@
 
 namespace Hj\File\Mp3\Elements;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use Hj\Exception\NullArgumentException;
 
 /**
  * Class Interpreter
@@ -15,14 +15,14 @@ use Doctrine\Common\Collections\ArrayCollection;
  *
  * @todo add unit test
  */
-class Interpreter
+class Interpreter implements Element
 {
     const CLASS_NAME = __CLASS__;
 
     /**
      * @var integer
      */
-    private $identifier;
+    private $id;
 
     /**
      * @var boolean
@@ -40,21 +40,31 @@ class Interpreter
     private $firstName;
 
     /**
-     * @var ArrayCollection
+     * @var string
      */
-    private $titles;
-
-    public function __construct()
-    {
-        $this->titles = new ArrayCollection();
-    }
+    private $uniqueId;
 
     /**
-     * @return int
+     * @param int $id
      */
-    public function getIdentifier()
+    public function setId($id)
     {
-        return $this->identifier;
+        $this->id = $id;
+    }
+
+    public function setUniqueId()
+    {
+        $method = __METHOD__;
+
+        if (null === $this->name) {
+            throw new NullArgumentException("You must set the name before calling {$method}");
+        }
+
+        if (null === $this->firstName) {
+            throw new NullArgumentException("You must set the first name before calling {$method}");
+        }
+
+        $this->uniqueId = "{$this->name}_{$this->firstName}";
     }
 
     /**
@@ -82,14 +92,6 @@ class Interpreter
     }
 
     /**
-     * @param int $identifier
-     */
-    public function setIdentifier($identifier)
-    {
-        $this->identifier = $identifier;
-    }
-
-    /**
      * @param boolean $original
      */
     public function setOriginal($original)
@@ -106,6 +108,14 @@ class Interpreter
     }
 
     /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
      * @param string $name
      */
     public function setName($name)
@@ -114,22 +124,20 @@ class Interpreter
     }
 
     /**
-     * @param Title $title
-     */
-    public function addTitle(Title $title)
-    {
-        if (false === $this->titleAlreadyExist($title)) {
-            $this->titles->add($title);
-        }
-    }
-
-    /**
-     * @param Title $title
+     * @param Element $interpreter
      *
      * @return bool
      */
-    private function titleAlreadyExist(Title $title)
+    public function isEqual(Element $interpreter)
     {
-        return $this->titles->contains($title);
+        return $interpreter->getUniqueId() === $this->uniqueId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUniqueId()
+    {
+        return $this->uniqueId;
     }
 }
