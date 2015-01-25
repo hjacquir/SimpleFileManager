@@ -18,6 +18,8 @@ use Hj\Transformer\ArrayTransformer;
  */
 class CsvFileManager extends FileManager
 {
+    const CLASS_NAME = __CLASS__;
+
     /**
      * @var Csv
      */

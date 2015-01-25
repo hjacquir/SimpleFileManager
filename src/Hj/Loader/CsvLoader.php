@@ -17,6 +17,8 @@ use Hj\Manager\CsvFileManager;
  */
 class CsvLoader implements Loader
 {
+    const CLASS_NAME = __CLASS__;
+
     /**
      * @var CsvFileManager
      */
