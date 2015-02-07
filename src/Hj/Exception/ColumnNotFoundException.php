@@ -8,10 +8,9 @@
 namespace Hj\Exception;
 
 /**
- * Class FileNotFoundException
+ * Class ColumnNotFoundException
  * @package Hj\Exception
  */
-class FileNotFoundException extends \Exception implements HjException
+class ColumnNotFoundException extends \Exception implements HjException
 {
-
 }

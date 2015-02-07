@@ -8,10 +8,12 @@
 namespace Hj\Mapper;
 
 /**
- * Class Mapper
+ * Map an array to an object
+ *
+ * Class ObjectMapper
  * @package Hj\Mapper
  */
-abstract class Mapper
+abstract class ObjectMapper
 {
     /**
      * @var array
@@ -19,15 +21,20 @@ abstract class Mapper
     private $array = array();
 
     /**
+     * @return array
+     */
+    public function getArray()
+    {
+        return $this->array;
+    }
+
+    /**
      * @param array $array
      */
-    public function __construct(Array $array)
+    public function setArray(Array $array)
     {
         $this->array = $array;
     }
 
-    /**
-     * @return Object
-     */
-    abstract public function mapToObject();
+    abstract protected function map();
 }

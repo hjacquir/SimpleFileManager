@@ -9,6 +9,7 @@ namespace Hj\Manager;
 
 use Hj\File\Csv;
 use Hj\Transformer\ArrayTransformer;
+use Hj\Validator\CsvHeaderValidator;
 
 /**
  * Class CsvFileManager
@@ -26,11 +27,18 @@ class CsvFileManager extends FileManager
     private $csv;
 
     /**
-     * @param Csv $csv
+     * @var CsvHeaderValidator
      */
-    public function __construct(Csv $csv)
+    private $csvHeaderValidator;
+
+    /**
+     * @param Csv $csv
+     * @param CsvHeaderValidator $csvHeaderValidator
+     */
+    public function __construct(Csv $csv, CsvHeaderValidator $csvHeaderValidator)
     {
         $this->csv = $csv;
+        $this->csvHeaderValidator = $csvHeaderValidator;
     }
 
     /**
@@ -48,6 +56,8 @@ class CsvFileManager extends FileManager
 
         $header = $this->getHeader($resource, $delimiter, $enclosure, $escape);
 
+        $this->validHeader($header);
+
         $header = ArrayTransformer::camelCaseKey($header, true);
 
         while (false !== ($row = fgetcsv($resource, null, $delimiter, $enclosure, $escape))) {
@@ -64,6 +74,16 @@ class CsvFileManager extends FileManager
     public function getCsv()
     {
         return $this->csv;
+    }
+
+    /**
+     * @param $header
+     */
+    private function validHeader($header)
+    {
+        $this->csvHeaderValidator->setCurrentHeader($header);
+        $this->csvHeaderValidator->setExpectedHeader($this->csv->getColumns());
+        $this->csvHeaderValidator->valid();
     }
 
     /**

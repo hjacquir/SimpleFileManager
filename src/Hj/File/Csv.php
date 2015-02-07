@@ -16,7 +16,7 @@ use Hj\Exception\FileNotFoundException;
  * Class Csv
  * @package Hj\File
  */
-class Csv implements File
+abstract class Csv implements File
 {
     const CLASS_NAME = __CLASS__;
 
@@ -94,6 +94,11 @@ class Csv implements File
     {
         return 'csv';
     }
+
+    /**
+     * @return array
+     */
+    abstract public function getColumns();
 
     /**
      * @param string $filename
