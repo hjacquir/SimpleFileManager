@@ -7,7 +7,7 @@
 
 namespace Hj\Manager;
 
-use Hj\File\Csv;
+use Hj\File\Csv\Csv;
 use Hj\Transformer\ArrayTransformer;
 use Hj\Validator\CsvHeaderValidator;
 

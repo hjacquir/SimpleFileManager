@@ -10,7 +10,7 @@ namespace Hj\Loader;
 use Hj\Manager\CsvFileManager;
 
 /**
- * Class Csv
+ * Class CsvLoader
  * @package Hj\Loader
  *
  * @todo add unit and functional test

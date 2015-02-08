@@ -5,16 +5,17 @@
  * @author : Hatim Jacquir <jacquirhatim@gmail.com>
  */
 
-namespace Hj\File;
+namespace Hj\File\Csv;
 
 use Hj\Exception\FileFormatException;
 use Hj\Exception\FileNotFoundException;
+use Hj\File\File;
 
 /**
  * Represent an csv file
  *
  * Class Csv
- * @package Hj\File
+ * @package Hj\File\Csv
  */
 abstract class Csv implements File
 {
