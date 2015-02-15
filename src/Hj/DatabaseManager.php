@@ -34,12 +34,9 @@ class DatabaseManager
      */
     public function __construct(ApcCache $cache, Configuration $configuration, array $connexion)
     {
-        $entityMappingPath = __DIR__ . '/Mapping/';
-        $proxyDir = __DIR__ . '/doctrineProxies/';
+        $driver = new XmlDriver(array(__DIR__ . '/Mapping/'));
 
-        $driver = new XmlDriver(array($entityMappingPath));
-
-        $configuration->setProxyDir($proxyDir);
+        $configuration->setProxyDir(__DIR__ . '/doctrineProxies/');
         $configuration->setProxyNamespace('DoctrineProxy');
         $configuration->setMetadataDriverImpl($driver);
         $configuration->setMetadataCacheImpl($cache);
