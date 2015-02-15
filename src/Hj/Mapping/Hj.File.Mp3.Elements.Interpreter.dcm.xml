@@ -1,0 +1,14 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                   https://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
+    <entity name="Hj\File\Mp3\Elements\Interpreter" table="interpreter">
+        <id name="id" column="id" type="integer">
+            <generator strategy="AUTO" />
+        </id>
+        <field name="original" column="original" column-definition="TINYINT (1) NOT NULL DEFAULT 0" />
+        <field name="name" column="name" type="string" length="255" />
+        <field name="firstName" column="first_name" type="string" length="255" />
+        <field name="uniqueId" column="unique_id" type="text" />
+    </entity>
+</doctrine-mapping>

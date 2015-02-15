@@ -11,9 +11,7 @@
     ],
     "require": {
         "phpunit/phpunit": "~4.0",
-        "doctrine/orm": "~2.4",
-        "silex/silex": "~1.2",
-        "twig/twig": "~1.0"
+        "doctrine/orm": "~2.4"
     },
     "autoload": {
         "psr-0": {
