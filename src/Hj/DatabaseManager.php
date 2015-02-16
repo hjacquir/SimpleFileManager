@@ -25,31 +25,53 @@ class DatabaseManager
     /**
      * @var EntityManager
      */
-    private $entityManager;
+    private static $entityManager = null;
 
     /**
-     * @param ApcCache $cache
-     * @param Configuration $configuration
-     * @param array $connexion
+     * @var Configuration
      */
-    public function __construct(ApcCache $cache, Configuration $configuration, array $connexion)
+    private static $configuration;
+
+    /**
+     * @var array
+     */
+    private static $connexion;
+
+    /**
+     * @return EntityManager
+     */
+    public static function getEntityManager()
     {
-        $driver = new XmlDriver(array(__DIR__ . '/Mapping/'));
+        if (true === is_null(self::$entityManager)) {
+            self::configure();
+            self::$entityManager = EntityManager::create(self::$connexion, self::$configuration);
+        }
 
-        $configuration->setProxyDir(__DIR__ . '/doctrineProxies/');
-        $configuration->setProxyNamespace('DoctrineProxy');
-        $configuration->setMetadataDriverImpl($driver);
-        $configuration->setMetadataCacheImpl($cache);
-        $configuration->setQueryCacheImpl($cache);
-
-        $this->entityManager = EntityManager::create($connexion, $configuration);
+        return self::$entityManager;
     }
 
     /**
-     * @return \Doctrine\ORM\EntityManager
+     * @void
      */
-    public function getEntityManager()
+    private static function configure()
     {
-        return $this->entityManager;
+        $cache = new ApcCache();
+
+        $driver = new XmlDriver(array(__DIR__ . '/Mapping/'));
+
+        self::$configuration = new Configuration();
+        self::$configuration->setProxyDir(__DIR__ . '/doctrineProxies/');
+        self::$configuration->setProxyNamespace('DoctrineProxy');
+        self::$configuration->setMetadataDriverImpl($driver);
+        self::$configuration->setMetadataCacheImpl($cache);
+        self::$configuration->setQueryCacheImpl($cache);
+
+        self::$connexion = array(
+            'driver' => 'pdo_mysql',
+            'host' => 'localhost',
+            'user' => 'root',
+            'password' => 'root',
+            'dbname' => 'simplefilemanager',
+        );
     }
 }
