@@ -95,7 +95,7 @@ class ElementCollection
         $class = new \ReflectionClass($className);
 
         if (false == $class->implementsInterface('Hj\File\Mp3\Elements\Element')) {
-            throw new ClassNotFoundException("The class {$class->getName()} does not exist or she is not an Element");
+            throw new ClassNotFoundException("The class {$class->name} does not exist or she is not an Element");
         }
     }
 }

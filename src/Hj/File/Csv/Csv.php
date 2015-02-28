@@ -42,7 +42,7 @@ abstract class Csv extends File
      */
     public function __construct($filename, $delimiter = ",", $enclosure = '"', $escape = "\\")
     {
-        parent::setFilename($filename);
+        parent::__construct($filename);
 
         $this->delimiter = $delimiter;
         $this->enclosure = $enclosure;

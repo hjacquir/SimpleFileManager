@@ -22,7 +22,7 @@ abstract class File
      */
     public function __construct($filename)
     {
-        $this->filename = $filename;
+        $this->setFilename($filename);
     }
 
     /**
