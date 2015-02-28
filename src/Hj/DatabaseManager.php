@@ -11,6 +11,11 @@ use Doctrine\Common\Cache\ApcCache;
 use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\Driver\XmlDriver;
+use Hj\File\Yaml;
+use Hj\Loader\YamlFileLoader;
+use Hj\Manager\YamlFileManager;
+use Symfony\Component\Config\Definition\Builder\TreeBuilder;
+use Symfony\Component\Config\Definition\Processor;
 
 /**
  * I manage the database by using Doctrine Entity Manager
@@ -66,12 +71,18 @@ class DatabaseManager
         self::$configuration->setMetadataCacheImpl($cache);
         self::$configuration->setQueryCacheImpl($cache);
 
-        self::$connexion = array(
-            'driver' => 'pdo_mysql',
-            'host' => 'localhost',
-            'user' => 'root',
-            'password' => 'root',
-            'dbname' => 'simplefilemanager',
+        $loader = new YamlFileLoader(
+            new YamlFileManager(),
+            new Yaml(__DIR__ . '/../../config/database.yml')
         );
+
+        $loader->loadData();
+        $configs = $loader->getLoadedData();
+
+        $processor = new Processor();
+
+        $configuration = new DatabaseConfiguration(new TreeBuilder());
+
+        self::$connexion = $processor->processConfiguration($configuration, $configs);
     }
 }
