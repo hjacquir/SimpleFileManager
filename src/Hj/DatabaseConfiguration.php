@@ -19,62 +19,62 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  */
 class DatabaseConfiguration implements ConfigurationInterface
 {
-	/**
-	 * @var TreeBuilder
-	 */
-	private $treeBuilder;
+    /**
+     * @var TreeBuilder
+     */
+    private $treeBuilder;
 
-	/**
-	 * @param TreeBuilder $treeBuilder
-	 */
-	public function __construct(TreeBuilder $treeBuilder)
-	{
-		$this->treeBuilder = $treeBuilder;
-	}
+    /**
+     * @param TreeBuilder $treeBuilder
+     */
+    public function __construct(TreeBuilder $treeBuilder)
+    {
+        $this->treeBuilder = $treeBuilder;
+    }
 
-	/**
-	 * Generates the configuration tree builder.
-	 *
-	 * @return \Symfony\Component\Config\Definition\Builder\TreeBuilder The tree builder
-	 */
-	public function getConfigTreeBuilder()
-	{
-		$rootNode = $this->treeBuilder->root('database');
+    /**
+     * Generates the configuration tree builder.
+     *
+     * @return \Symfony\Component\Config\Definition\Builder\TreeBuilder The tree builder
+     */
+    public function getConfigTreeBuilder()
+    {
+        $rootNode = $this->treeBuilder->root('database');
 
-		$children = $rootNode->children();
+        $children = $rootNode->children();
 
-		$scalarNodes = array(
-			'driver',
-			'host',
-			'dbname',
-			'password',
-			'user',
-		);
+        $scalarNodes = array(
+            'driver',
+            'host',
+            'dbname',
+            'password',
+            'user',
+        );
 
-		$this->addRequiredScalarNodes($children, $scalarNodes);
+        $this->addRequiredScalarNodes($children, $scalarNodes);
 
-		$children->end();
+        $children->end();
 
-		return $this->treeBuilder;
-	}
+        return $this->treeBuilder;
+    }
 
-	/**
-	 * @param NodeBuilder $node
-	 * @param array $names
-	 */
-	private function addRequiredScalarNodes(NodeBuilder $node, array $names)
-	{
-		foreach ($names as $name) {
-			$this->addScalarNodeRequired($node, $name);
-		}
-	}
+    /**
+     * @param NodeBuilder $node
+     * @param array $names
+     */
+    private function addRequiredScalarNodes(NodeBuilder $node, array $names)
+    {
+        foreach ($names as $name) {
+            $this->addScalarNodeRequired($node, $name);
+        }
+    }
 
-	/**
-	 * @param NodeBuilder $node
-	 * @param string $name
-	 */
-	private function addScalarNodeRequired(NodeBuilder $node, $name)
-	{
-		$node->scalarNode($name)->isRequired()->end();
-	}
+    /**
+     * @param NodeBuilder $node
+     * @param string $name
+     */
+    private function addScalarNodeRequired(NodeBuilder $node, $name)
+    {
+        $node->scalarNode($name)->isRequired()->end();
+    }
 }
