@@ -23,7 +23,7 @@ class CsvFileManager extends FileManager
     const CLASS_NAME = __CLASS__;
 
     /**
-     * @var Csv
+     * @var File
      */
     private $csv;
 
@@ -33,7 +33,7 @@ class CsvFileManager extends FileManager
     private $csvHeaderValidator;
 
     /**
-     * @param Csv $csv
+     * @param File $csv
      * @param CsvHeaderValidator $csvHeaderValidator
      */
     public function __construct(File $csv, CsvHeaderValidator $csvHeaderValidator)

@@ -19,7 +19,7 @@ use Hj\Manager\FileManager;
 class YamlFileLoader implements Loader
 {
     /**
-     * @var string
+     * @var array
      */
     private $loadedData;
 
@@ -59,7 +59,7 @@ class YamlFileLoader implements Loader
     }
 
     /**
-     * @return string
+     * @return array
      */
     public function getLoadedData()
     {
