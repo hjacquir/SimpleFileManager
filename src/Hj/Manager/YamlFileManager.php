@@ -14,7 +14,7 @@ namespace Hj\Manager;
 class YamlFileManager extends FileManager
 {
     /**
-     * @return string
+     * @return array
      */
     public function getContent()
     {

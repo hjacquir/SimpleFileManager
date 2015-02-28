@@ -8,7 +8,6 @@
 namespace Hj\Loader;
 
 use Hj\Manager\CsvFileManager;
-use Hj\Manager\FileManager;
 
 /**
  * Class CsvLoader
@@ -21,7 +20,7 @@ class CsvLoader implements Loader
     const CLASS_NAME = __CLASS__;
 
     /**
-     * @var FileManager
+     * @var CsvFileManager
      */
     private $fileManager;
 
@@ -33,7 +32,7 @@ class CsvLoader implements Loader
     /**
      * @param CsvFileManager $fileManager
      */
-    public function __construct(FileManager $fileManager)
+    public function __construct(CsvFileManager $fileManager)
     {
         $this->fileManager = $fileManager;
     }
