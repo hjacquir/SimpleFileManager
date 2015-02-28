@@ -19,7 +19,7 @@ use Hj\File\Mp3\Elements\Title;
  *
  * @todo add unit test
  */
-class Mp3 implements File
+class Mp3 extends File
 {
     const CLASS_NAME = __CLASS__;
 

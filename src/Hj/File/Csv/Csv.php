@@ -7,8 +7,6 @@
 
 namespace Hj\File\Csv;
 
-use Hj\Exception\FileFormatException;
-use Hj\Exception\FileNotFoundException;
 use Hj\File\File;
 
 /**
@@ -17,14 +15,9 @@ use Hj\File\File;
  * Class Csv
  * @package Hj\File\Csv
  */
-abstract class Csv implements File
+abstract class Csv extends File
 {
     const CLASS_NAME = __CLASS__;
-
-    /**
-     * @var string
-     */
-    private $filename;
 
     /**
      * @var string
@@ -49,7 +42,7 @@ abstract class Csv implements File
      */
     public function __construct($filename, $delimiter = ",", $enclosure = '"', $escape = "\\")
     {
-        $this->setFilename($filename);
+        parent::setFilename($filename);
 
         $this->delimiter = $delimiter;
         $this->enclosure = $enclosure;
@@ -83,14 +76,6 @@ abstract class Csv implements File
     /**
      * @return string
      */
-    public function getFilename()
-    {
-        return $this->filename;
-    }
-
-    /**
-     * @return string
-     */
     public function getExtension()
     {
         return 'csv';
@@ -100,35 +85,4 @@ abstract class Csv implements File
      * @return array
      */
     abstract public function getColumns();
-
-    /**
-     * @param string $filename
-     *
-     * @return bool
-     */
-    private function isCsv($filename)
-    {
-        $extension = pathinfo($filename, PATHINFO_EXTENSION);
-
-        return $extension === $this->getExtension();
-    }
-
-    /**
-     * @param string $filename
-     *
-     * @throws \Hj\Exception\FileNotFoundException
-     * @throws \Hj\Exception\FileFormatException
-     */
-    private function setFilename($filename)
-    {
-        if (false === is_file($filename)) {
-            throw new FileNotFoundException("The file does not exist");
-        }
-
-        if (false === $this->isCsv($filename)) {
-            throw new FileFormatException("The file is not a csv file");
-        }
-
-        $this->filename = $filename;
-    }
 }

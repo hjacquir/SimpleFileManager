@@ -10,6 +10,7 @@
         }
     ],
     "require": {
+        "symfony/config": "2.6.*",
         "phpunit/phpunit": "~4.0",
         "doctrine/orm": "~2.4"
     },
