@@ -8,6 +8,7 @@
 namespace Hj\Manager;
 
 use Hj\File\Csv\Csv;
+use Hj\File\File;
 use Hj\Transformer\ArrayTransformer;
 use Hj\Validator\CsvHeaderValidator;
 
@@ -35,7 +36,7 @@ class CsvFileManager extends FileManager
      * @param Csv $csv
      * @param CsvHeaderValidator $csvHeaderValidator
      */
-    public function __construct(Csv $csv, CsvHeaderValidator $csvHeaderValidator)
+    public function __construct(File $csv, CsvHeaderValidator $csvHeaderValidator)
     {
         $this->csv = $csv;
         $this->csvHeaderValidator = $csvHeaderValidator;
