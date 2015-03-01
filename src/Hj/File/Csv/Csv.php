@@ -18,6 +18,9 @@ use Hj\File\File;
 abstract class Csv extends File
 {
     const CLASS_NAME = __CLASS__;
+    const DEFAULT_DELIMITER = ",";
+    const DEFAULT_ENCLOSURE = '"';
+    const DEFAULT_ESCAPE = "\\";
 
     /**
      * @var string
@@ -40,8 +43,12 @@ abstract class Csv extends File
      * @param string $enclosure
      * @param string $escape
      */
-    public function __construct($filename, $delimiter = ",", $enclosure = '"', $escape = "\\")
-    {
+    public function __construct(
+        $filename,
+        $delimiter = self::DEFAULT_DELIMITER,
+        $enclosure = self::DEFAULT_ENCLOSURE,
+        $escape = self::DEFAULT_ESCAPE
+    ) {
         parent::__construct($filename);
 
         $this->delimiter = $delimiter;

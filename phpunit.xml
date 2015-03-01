@@ -1,5 +1,5 @@
 <phpunit
-         bootstrap="../../../vendor/autoload.php"
+         bootstrap="vendor/autoload.php"
          backupGlobals="false"
          backupStaticAttributes="false"
          colors="true"
@@ -11,14 +11,10 @@
          stopOnFailure="false"
          stopOnIncomplete="false"
          stopOnSkipped="false"
-         strict="true"
          verbose="true">
     <testsuites>
         <testsuite name="Unit">
-            <directory>Unit</directory>
-        </testsuite>
-        <testsuite name="Functional">
-            <directory>Functional</directory>
+            <directory>src/Hj/Tests/Unit/</directory>
         </testsuite>
     </testsuites>
 </phpunit>

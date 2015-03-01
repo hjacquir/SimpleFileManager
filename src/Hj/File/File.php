@@ -12,6 +12,8 @@ use Hj\Exception\FileNotFoundException;
 
 abstract class File
 {
+    const CLASS_NAME = __CLASS__;
+
     /**
      * @var string
      */
@@ -39,9 +41,9 @@ abstract class File
      * @throws \Hj\Exception\FileNotFoundException
      * @throws \Hj\Exception\FileFormatException
      */
-    public function setFilename($filename)
+    private function setFilename($filename)
     {
-        if (false === is_file($filename)) {
+        if (false === $this->fileExist($filename)) {
             throw new FileNotFoundException("The file does not exist");
         }
 
@@ -50,6 +52,15 @@ abstract class File
         }
 
         $this->filename = $filename;
+    }
+
+    /**
+     * @param string $filename
+     * @return bool
+     */
+    private function fileExist($filename)
+    {
+        return is_file($filename);
     }
 
     /**
