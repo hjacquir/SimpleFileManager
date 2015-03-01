@@ -44,18 +44,18 @@ class ElementCollectionTest extends \PHPUnit_Framework_TestCase
 
     public function testShouldNotAddElementWhenElementIsAlreadyAdded()
     {
-        $this->element2 = $this->getMockElement();
+        $element2 = $this->getMockElement();
 
         $this->element
             ->expects($this->once())
             ->method('isEqual')
-            ->with($this->element2)
+            ->with($element2)
             ->will($this->returnValue(true));
 
         $this->assertSame(0, $this->collection->countElement());
         $this->collection->add($this->element);
         $this->assertSame(1, $this->collection->countElement());
-        $this->collection->add($this->element2);
+        $this->collection->add($element2);
         $this->assertSame(1, $this->collection->countElement());
     }
 
