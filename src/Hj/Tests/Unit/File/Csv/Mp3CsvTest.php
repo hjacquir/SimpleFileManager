@@ -9,6 +9,9 @@ namespace Hj\Tests\Unit\File\Csv;
 
 use Hj\File\Csv\Csv;
 use Hj\File\Csv\Mp3Csv;
+use org\bovigo\vfs\vfsStream;
+use org\bovigo\vfs\vfsStreamDirectory;
+use org\bovigo\vfs\vfsStreamFile;
 
 /**
  * Class Mp3CsvTest
@@ -23,27 +26,25 @@ class Mp3CsvTest extends \PHPUnit_Framework_TestCase
     /**
      * @var Mp3Csv
      */
+    private $mp3Csv;
+
+    /**
+     * @var vfsStreamFile
+     */
     private $file;
 
     /**
-     * @var string
+     * @var vfsStreamDirectory
      */
-    private $filename;
+    private $directory;
 
     public function setUp()
     {
-        $this->filename = __DIR__ . '/../fixtures/foo.csv';
+        $this->directory = vfsStream::setup('foo');
 
-        $this->file = new Mp3Csv($this->filename);
-    }
+        $this->file = vfsStream::newFile('bla.csv')->at($this->directory);
 
-    /**
-     * @param string $filename
-     * @return Mp3Csv
-     */
-    public function generateMp3Csv($filename)
-    {
-        return new Mp3Csv($filename);
+        $this->mp3Csv = new Mp3Csv($this->file->getName());
     }
 
     /**
@@ -52,7 +53,7 @@ class Mp3CsvTest extends \PHPUnit_Framework_TestCase
      */
     public function testShouldThrowAnExceptionWhenTheFileDoesNotExist()
     {
-        $this->generateMp3Csv('fileDoesNotExist');
+        new Mp3Csv('notExist');
     }
 
     /**
@@ -61,27 +62,29 @@ class Mp3CsvTest extends \PHPUnit_Framework_TestCase
      */
     public function testShouldThrowAnExceptionWhenTheFileExistButIsNotAnCsv()
     {
-        $this->generateMp3Csv(__DIR__ . '/../fixtures/foo.txt');
+        $file = vfsStream::newFile('bla')->at($this->directory);
+
+        new Mp3Csv($file->url());
     }
 
     public function testShouldGetTheFilename()
     {
-        $this->assertSame($this->filename, $this->file->getFilename());
+        $this->assertSame($this->file->getName(), $this->mp3Csv->getFilename());
     }
 
     public function testShouldGetTheDefaultDelimiter()
     {
-        $this->assertSame(Csv::DEFAULT_DELIMITER, $this->file->getDelimiter());
+        $this->assertSame(Csv::DEFAULT_DELIMITER, $this->mp3Csv->getDelimiter());
     }
 
     public function testShouldGetTheDefaultEnclosure()
     {
-        $this->assertSame(Csv::DEFAULT_ENCLOSURE, $this->file->getEnclosure());
+        $this->assertSame(Csv::DEFAULT_ENCLOSURE, $this->mp3Csv->getEnclosure());
     }
 
     public function testShouldGetTheDefaultEscape()
     {
-        $this->assertSame(Csv::DEFAULT_ESCAPE, $this->file->getEscape());
+        $this->assertSame(Csv::DEFAULT_ESCAPE, $this->mp3Csv->getEscape());
     }
 
     public function testShouldOverrideTheDefaultDelimiterEnclosureAndEscapeValues()
@@ -90,7 +93,7 @@ class Mp3CsvTest extends \PHPUnit_Framework_TestCase
         $escape = 'escape';
         $enclosure = 'enclosure';
 
-        $file = new Mp3Csv($this->filename, $delimiter, $enclosure, $escape);
+        $file = new Mp3Csv($this->file->getName(), $delimiter, $enclosure, $escape);
 
         $this->assertSame($delimiter, $file->getDelimiter());
         $this->assertSame($enclosure, $file->getEnclosure());
@@ -99,7 +102,7 @@ class Mp3CsvTest extends \PHPUnit_Framework_TestCase
 
     public function testShouldGetExtension()
     {
-        $this->assertSame('csv', $this->file->getExtension());
+        $this->assertSame('csv', $this->mp3Csv->getExtension());
     }
 
     public function testShouldGetColumns()
@@ -112,6 +115,6 @@ class Mp3CsvTest extends \PHPUnit_Framework_TestCase
             4 => 'Year',
         );
 
-        $this->assertSame($columns, $this->file->getColumns());
+        $this->assertSame($columns, $this->mp3Csv->getColumns());
     }
 }
