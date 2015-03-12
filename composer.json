@@ -13,7 +13,8 @@
         "symfony/config": "2.6.*",
         "phpunit/phpunit": "~4.0",
         "doctrine/orm": "~2.4",
-        "mikey179/vfsStream": "1.4.*@dev"
+        "mikey179/vfsStream": "1.4.*@dev",
+        "twig/twig": "~1.0"
     },
     "autoload": {
         "psr-0": {

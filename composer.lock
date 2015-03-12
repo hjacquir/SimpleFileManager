@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c5f813f9a6e720364740077f60ffa270",
+    "hash": "52d53d0895802e54104a2be29102eaaf",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -535,12 +535,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "f2f47930e68877007c9d86880b9b3365ddf605ee"
+                "reference": "d87118437e8840510de09054fa769d023ffd229b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/f2f47930e68877007c9d86880b9b3365ddf605ee",
-                "reference": "f2f47930e68877007c9d86880b9b3365ddf605ee",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/d87118437e8840510de09054fa769d023ffd229b",
+                "reference": "d87118437e8840510de09054fa769d023ffd229b",
                 "shasum": ""
             },
             "require": {
@@ -604,7 +604,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2015-03-02 16:58:05"
+            "time": "2015-03-12 21:16:28"
         },
         {
             "name": "mikey179/vfsStream",
@@ -761,12 +761,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "3d0b2a3341a8bd4070504ef0609291d89fcfb59c"
+                "reference": "74cf128bd0f643957c076cc67121dbff445755fe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/3d0b2a3341a8bd4070504ef0609291d89fcfb59c",
-                "reference": "3d0b2a3341a8bd4070504ef0609291d89fcfb59c",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/74cf128bd0f643957c076cc67121dbff445755fe",
+                "reference": "74cf128bd0f643957c076cc67121dbff445755fe",
                 "shasum": ""
             },
             "require": {
@@ -815,7 +815,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-02-26 08:10:32"
+            "time": "2015-03-06 11:27:25"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -1507,12 +1507,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Config.git",
-                "reference": "901bb1e0fdad75ac89b2ce0699bad65185ddaa44"
+                "reference": "7a47189c7667ca69bcaafd19ef8a8941db449a2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Config/zipball/901bb1e0fdad75ac89b2ce0699bad65185ddaa44",
-                "reference": "901bb1e0fdad75ac89b2ce0699bad65185ddaa44",
+                "url": "https://api.github.com/repos/symfony/Config/zipball/7a47189c7667ca69bcaafd19ef8a8941db449a2c",
+                "reference": "7a47189c7667ca69bcaafd19ef8a8941db449a2c",
                 "shasum": ""
             },
             "require": {
@@ -1549,7 +1549,7 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "http://symfony.com",
-            "time": "2015-02-25 12:51:23"
+            "time": "2015-03-12 10:28:44"
         },
         {
             "name": "symfony/console",
@@ -1558,12 +1558,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Console.git",
-                "reference": "f9ee7f03c1af5e6cf59e2270ac3b8ed7f47e2158"
+                "reference": "8b1ee2728fb2f0ffd3337127bc49fd1fcf3e3bd5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/f9ee7f03c1af5e6cf59e2270ac3b8ed7f47e2158",
-                "reference": "f9ee7f03c1af5e6cf59e2270ac3b8ed7f47e2158",
+                "url": "https://api.github.com/repos/symfony/Console/zipball/8b1ee2728fb2f0ffd3337127bc49fd1fcf3e3bd5",
+                "reference": "8b1ee2728fb2f0ffd3337127bc49fd1fcf3e3bd5",
                 "shasum": ""
             },
             "require": {
@@ -1607,7 +1607,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "http://symfony.com",
-            "time": "2015-02-24 12:09:34"
+            "time": "2015-03-12 14:31:07"
         },
         {
             "name": "symfony/filesystem",
@@ -1616,12 +1616,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Filesystem.git",
-                "reference": "d4ae276ad15d0ae17ae07bd8b7de1c5381217283"
+                "reference": "cd84fd71bce5e9e136cab7e1fbc07af877e3a932"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Filesystem/zipball/d4ae276ad15d0ae17ae07bd8b7de1c5381217283",
-                "reference": "d4ae276ad15d0ae17ae07bd8b7de1c5381217283",
+                "url": "https://api.github.com/repos/symfony/Filesystem/zipball/cd84fd71bce5e9e136cab7e1fbc07af877e3a932",
+                "reference": "cd84fd71bce5e9e136cab7e1fbc07af877e3a932",
                 "shasum": ""
             },
             "require": {
@@ -1657,7 +1657,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "http://symfony.com",
-            "time": "2015-02-18 10:38:04"
+            "time": "2015-03-12 14:31:07"
         },
         {
             "name": "symfony/yaml",
@@ -1666,12 +1666,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Yaml.git",
-                "reference": "afd2e0dec75dbb76de5df220039f6b218dacf967"
+                "reference": "29682f882d6bd3388fab47fbe8cbd3c7ff9ea5ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/afd2e0dec75dbb76de5df220039f6b218dacf967",
-                "reference": "afd2e0dec75dbb76de5df220039f6b218dacf967",
+                "url": "https://api.github.com/repos/symfony/Yaml/zipball/29682f882d6bd3388fab47fbe8cbd3c7ff9ea5ae",
+                "reference": "29682f882d6bd3388fab47fbe8cbd3c7ff9ea5ae",
                 "shasum": ""
             },
             "require": {
@@ -1707,7 +1707,64 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "http://symfony.com",
-            "time": "2015-02-21 13:23:59"
+            "time": "2015-03-07 07:44:26"
+        },
+        {
+            "name": "twig/twig",
+            "version": "1.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twigphp/Twig.git",
+                "reference": "eecf85e903322e425ea921fd2588238f632965d2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/eecf85e903322e425ea921fd2588238f632965d2",
+                "reference": "eecf85e903322e425ea921fd2588238f632965d2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.7"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.18-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Twig_": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
+                },
+                {
+                    "name": "Armin Ronacher",
+                    "email": "armin.ronacher@active-4.com",
+                    "role": "Project Founder"
+                },
+                {
+                    "name": "Twig Team",
+                    "homepage": "http://twig.sensiolabs.org/contributors",
+                    "role": "Contributors"
+                }
+            ],
+            "description": "Twig, the flexible, fast, and secure template language for PHP",
+            "homepage": "http://twig.sensiolabs.org",
+            "keywords": [
+                "templating"
+            ],
+            "time": "2015-03-06 07:12:47"
         }
     ],
     "packages-dev": [],
