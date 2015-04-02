@@ -1,7 +1,7 @@
 Liste des caractéristiques
 ==========================
 - il permettra de Choisir le Profil Utilisateur (Admin ou Owner)
-- il permettra d'importer une Bibliothèque Excel de Titres et d'Interprètes
+- il permettra d'importer une Bibliothèque Csv de Titres et d'Interprètes
 - il permettra d'Uploader un Fichier
 - il devra lancer une Analyse Automatique du Fichier en fonction de son Nom
 - il permettra de Valider la Qualification du Fichier

@@ -28,10 +28,10 @@ use Symfony\Component\Translation\Translator;
 use Symfony\Component\Validator\Validation;
 
 /**
- * Class Form
+ * Class FactoryCreator
  * @package Hj\Form
  */
-class Form
+class FactoryCreator
 {
     const LOCALE = 'fr';
 
@@ -64,9 +64,11 @@ class Form
     }
 
     /**
+     * Create a form factory
+     *
      * @return \Symfony\Component\Form\FormFactoryInterface
      */
-    public function getFormFactory()
+    public function createFactory()
     {
         return $this->formBuilder->getFormFactory();
     }
