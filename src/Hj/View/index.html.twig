@@ -1,0 +1,10 @@
+{% extends 'layout.html.twig' %}
+{% block body %}
+    {{ message }}
+    <form>
+        {{ form_widget(form) }}
+        <input type="submit" name="submit" />
+    </form>
+
+{% endblock %}
+

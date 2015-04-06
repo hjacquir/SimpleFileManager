@@ -7,11 +7,6 @@
 
 namespace Hj\Form;
 
-define('VENDOR_DIR', realpath(__DIR__ . '/../../../vendor'));
-define('VENDOR_FORM_DIR', VENDOR_DIR . '/symfony/form/Symfony/Component/Form');
-define('VENDOR_VALIDATOR_DIR', VENDOR_DIR . '/symfony/validator/Symfony/Component/Validator');
-define('DEFAULT_FORM_THEME', 'form_div_layout.html.twig');
-
 use Hj\Twig;
 use Symfony\Bridge\Twig\Extension\FormExtension;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
@@ -30,10 +25,19 @@ use Symfony\Component\Validator\Validation;
 /**
  * Class FactoryCreator
  * @package Hj\Form
+ *
+ * @todo fix : refactor, split, rename and use dependency injection
  */
 class FactoryCreator
 {
     const LOCALE = 'fr';
+    const TRANSLATIONS_DOMAIN = 'validators';
+    const TRANSLATIONS_VALIDATOR_PATH = '/Resources/translations/validators.fr.xlf';
+    const VALIDATORS_FORMAT = 'xlf';
+    const DEFAULT_FORM_THEME = 'form_div_layout.html.twig';
+    const VENDOR_DIR = '/../../../vendor';
+    const SYMFONY_COMPONENT_FORM_DIR = '/symfony/form/Symfony/Component/Form';
+    const SYMFONY_COMPONENT_VALIDATOR_DIR = '/symfony/validator/Symfony/Component/Validator';
 
     /**
      * @var \Symfony\Component\Security\Csrf\CsrfTokenManager
@@ -48,16 +52,31 @@ class FactoryCreator
     /**
      * @var Twig
      */
-    private $twigEnvironment;
+    private $twig;
 
     /**
-     * @param \Twig_Environment $twigEnvironment
+     * @var string
+     */
+    private $vendorFormDirPath;
+
+    /**
+     * @var string
+     */
+    private $vendorValidatorDirPath;
+
+    /**
+     * @param \Hj\Twig $twig
      * @param CsrfTokenManager $csrfTokenManager
      */
-    public function __construct(\Twig_Environment $twigEnvironment, CsrfTokenManager $csrfTokenManager)
+    public function __construct(Twig $twig, CsrfTokenManager $csrfTokenManager)
     {
         $this->csrfTokenManager = $csrfTokenManager;
-        $this->twigEnvironment = $twigEnvironment;
+        $this->twig = $twig;
+
+        $vendorDirPath = realpath(__DIR__ . self::VENDOR_DIR);
+
+        $this->vendorFormDirPath = $vendorDirPath . self::SYMFONY_COMPONENT_FORM_DIR;
+        $this->vendorValidatorDirPath = $vendorDirPath . self::SYMFONY_COMPONENT_VALIDATOR_DIR;
 
         $this->configureTwigEnvironment();
         $this->configureFormBuilder();
@@ -76,25 +95,28 @@ class FactoryCreator
     private function configureTwigEnvironment()
     {
         $translator = new Translator(self::LOCALE);
-        $translator->addLoader('xlf', new XliffFileLoader());
+        $translator->addLoader(self::VALIDATORS_FORMAT, new XliffFileLoader());
         $translator->addResource(
-            'xlf',
-            VENDOR_FORM_DIR . '/Resources/translations/validators.fr.xlf',
+            self::VALIDATORS_FORMAT,
+            $this->vendorFormDirPath . self::TRANSLATIONS_VALIDATOR_PATH,
             self::LOCALE,
-            'validators'
+            self::TRANSLATIONS_DOMAIN
         );
         $translator->addResource(
-            'xlf',
-            VENDOR_VALIDATOR_DIR . '/Resources/translations/validators.fr.xlf',
+            self::VALIDATORS_FORMAT,
+            $this->vendorValidatorDirPath . self::TRANSLATIONS_VALIDATOR_PATH,
             self::LOCALE,
-            'validators'
+            self::TRANSLATIONS_DOMAIN
         );
 
-        $formEngine = new TwigRendererEngine(array(DEFAULT_FORM_THEME));
-        $formEngine->setEnvironment($this->twigEnvironment);
+        $formEngine = new TwigRendererEngine(array(self::DEFAULT_FORM_THEME));
 
-        $this->twigEnvironment->addExtension(new TranslationExtension($translator));
-        $this->twigEnvironment->addExtension(new FormExtension(new TwigRenderer($formEngine, $this->csrfTokenManager)));
+        $twigEnvironment = $this->twig->getEnvironment();
+
+        $formEngine->setEnvironment($twigEnvironment);
+
+        $twigEnvironment->addExtension(new TranslationExtension($translator));
+        $twigEnvironment->addExtension(new FormExtension(new TwigRenderer($formEngine, $this->csrfTokenManager)));
     }
 
     private function configureFormBuilder()
