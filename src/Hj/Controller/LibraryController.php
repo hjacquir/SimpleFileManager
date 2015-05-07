@@ -10,7 +10,10 @@ namespace Hj\Controller;
 use Hj\Form\FactoryCreator;
 use Hj\Form\UploadBuilder;
 use Hj\Twig;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Csrf\CsrfTokenManager;
+use Twig_Environment;
+use Twig_Loader_Filesystem;
 
 /**
  * Class LibraryController
@@ -23,21 +26,13 @@ class LibraryController
     const INDEX_VIEW = 'index.html.twig';
 
     /**
-     * @var Twig
+     * @return Response
      */
-    private $twig;
-
-    /**
-     * @param Twig $twig
-     */
-    public function __construct(Twig $twig)
+    public function indexAction()
     {
-        $this->twig = $twig;
-    }
+        $twig = new Twig(new Twig_Loader_Filesystem(), new Twig_Environment());
 
-    public function index()
-    {
-        $factoryCreator = new FactoryCreator($this->twig, new CsrfTokenManager());
+        $factoryCreator = new FactoryCreator($twig, new CsrfTokenManager());
 
         $factory = $factoryCreator->createFactory();
 
@@ -47,14 +42,16 @@ class LibraryController
 
         $form = $uploadFormBuilder->build();
 
-        $twigEnvironment = $this->twig->getEnvironment();
+        $twigEnvironment = $twig->getEnvironment();
 
-        return $twigEnvironment->render(
+        $content = $twigEnvironment->render(
             self::INDEX_VIEW,
             array(
-                'message' => 'Hello',
+                'message' => 'Welcome',
                 'form' => $form->createView(),
             )
         );
+
+        return new Response($content);
     }
 }
