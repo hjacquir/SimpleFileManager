@@ -1,3 +1,3 @@
-library:
-    path: /library
+home:
+    path: /
     defaults: { _controller: 'Hj\Controller\LibraryController::indexAction' }
