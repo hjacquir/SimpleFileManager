@@ -7,7 +7,7 @@
 
 namespace Hj\Packager;
 
-use Hj\Collection\ElementCollection;
+use Hj\ElementCollection;
 use Hj\Loader\CsvLoader;
 use Hj\Mapper\InterpreterMapper;
 use Hj\Mapper\TitleMapper;
