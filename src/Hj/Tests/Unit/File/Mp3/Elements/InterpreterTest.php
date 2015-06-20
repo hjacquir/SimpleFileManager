@@ -34,7 +34,7 @@ class InterpreterTest extends \PHPUnit_Framework_TestCase
      * @param string $getterMethod
      * @param mixed $expectedValue
      */
-    public function testShouldAndGetAttributes($setterMethod, $getterMethod, $expectedValue)
+    public function testShouldSetAndGetAttributes($setterMethod, $getterMethod, $expectedValue)
     {
         $this->interpreter->{$setterMethod}($expectedValue);
 
@@ -75,7 +75,7 @@ class InterpreterTest extends \PHPUnit_Framework_TestCase
      * @expectedException \Hj\Exception\NullArgumentException
      * @expectedExceptionMessage You must set the first name before calling Hj\File\Mp3\Elements\Interpreter::setUniqueId
      */
-    public function testSetUniqueIdThrowAnExceptionWhenTheNameIsSetteButTheFirstnameNot()
+    public function testSetUniqueIdThrowAnExceptionWhenTheNameIsSetButTheFirstNameNotSet()
     {
         $this->interpreter->setName('bla');
         $this->interpreter->setUniqueId();
